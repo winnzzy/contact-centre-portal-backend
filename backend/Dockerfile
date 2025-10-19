@@ -1,0 +1,21 @@
+# Use Node.js 18 as the base image
+FROM node:18
+
+# Create app directory
+WORKDIR /app
+
+# Copy package.json and install dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy the rest of the app
+COPY . .
+
+# Set environment variable for port
+ENV PORT=10000
+
+# Expose the port
+EXPOSE 10000
+
+# Start the app
+CMD ["node", "index.js"]
